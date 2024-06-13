@@ -1,0 +1,79 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+const EXPERIENCIE = [
+  {
+    date: "Jul, 2020 - Present",
+    title: "Senior QA Consultant",
+    company: "Amaris Consulting",
+    description:
+      "Involved in the estimate, plan, and coordination of testing activities. Automate and maintain end-to-end testing. Execute regression tests. Identify inconsistent defects or operations and determine steps to reproduce them. Track and report test results.", 
+    web: "https://amaris.com",  
+  },
+  {
+    date: "Jul, 2018 - Jul, 2020",
+    title: "QA Consultant Experience",
+    company: "Amaris Consulting",
+    description:
+      "Work collaboratively as part of a small, agile and multi-functional team. Together with the team, establish and update, as necessary, an appropriate Definition of Done for the team. Work together with the team to properly refine and estimate user stories. Clarify product requirements and identify risks",
+    web: "https://amaris.com",
+  },
+  {
+    date: "Apr, 2017 - May, 2018",
+    title: "QA Automation Engineer",
+    company: "Oktana Corporation",
+    description:
+      "Manage and prepare test cases in an agile environment. Define and prepare the strategy to improve the quality of the evidence. Review and analyze system specifications, design and run manual and automated test cases, analyze results and report errors.",
+    web: "http://www.oktana.com",
+  },
+  {
+    date: "Septiembre 2022",
+    title: "QA Analyst",
+    company: "eLace Media Services",
+    description:
+      "Application analysis to identify opportunities for improvement. Estimate, plan, and coordinate testing activities, including defect identification, tracking, and documentation. Design, create and run test cases. Identify inconsistent defects or operations and determine steps to reproduce them, and document, track, and report test results and problems. Produce and maintain test documentation, including but not limited to test cases.",
+    web: "https://www.e-lace.com",
+  },
+  {
+    date: "Sep, 2008 - Jun, 2016",
+    title: "QA Advisor, QA Manager, QA Tester",
+    company: "University of Informatics Sciences",
+    description:
+      "Responsible for the entire QA process: plan the test process, assign tasks to the team. Design test cases, install test environments, run tests, record non-conformities. Generate test results report.",
+    web: "http://www.uci.cu",
+  },
+  {
+    date: "Jul, 2013 - Jul, 2014",
+    title: "Software Project Manager, Software Tester, System Deployment Engineer",
+    company: "University of Informatics Sciences",
+    description:
+      "Team Leader, Human & Material Resources Management, Test Cases Design, Functional Software Testing, Software Systems Deployment, Developer of Deployments for SCADA Systems",
+    web: "http://www.uci.cu",
+  },
+  {
+    date: "Jun, 2011 - May, 2012",
+    title: "QA Lead, QA Analyst, QA Tester",
+    company: "University of Informatics Sciences",
+    description:
+      "Analyze business requirements, Develop test plans, test scenarios, test cases, and test data. Design and run manual test cases, capture test results, test metrics and report them. Identify and scale system defects. Conduct a root cause analysis of defects and work with the Development Team to resolve them. Conduct quality control testing activities to ensure that applications and products and/or releases meet the organization's quality control standards. Triage and resolution of production problems derived from customer service",
+    web: "http://www.uci.cu",  
+  },
+  {
+    date: "Jun, 2010 - Jun, 2011",
+    title: "QA Tester",
+    company: "University of Informatics Sciences",    
+    description:
+      "Design test cases, install test environment, run tests, record non-conformities",    
+    web: "http://www.uci.cu",
+  },
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCIE.map((experiencie) => (
+      <li class="">
+        <ExperienceItem {...experiencie} />
+      </li>
+    ))
+  }
+</ol>

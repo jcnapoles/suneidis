@@ -1,9 +1,11 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
+import tailwind from "@astrojs/tailwind"
+import react from '@astrojs/react';
 
-import netlify from "@astrojs/netlify/functions";
+import robotsTxt from "astro-robots-txt"
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: netlify()
-});
+  integrations: [react(), tailwind(), robotsTxt()],
+  site: 'https://suenidis.com/'
+})

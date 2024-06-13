@@ -1,0 +1,49 @@
+---
+const personalImageAlt = "Suneidis Vinent"
+import Badge from "@/components/Badge.astro"
+import LinkedInIcon from "@/components/icons/LinkedIn.astro"
+import MailIcon from "@/components/icons/Mail.astro"
+import SocialPill from "@/components/SocialPill.astro"
+---
+
+<div class="max-w-xl">
+  <div class="flex gap-4 mb-4">
+    <img
+      class="rounded-full shadow-lg size-24"
+      src="/suneidis.jpg"
+      alt={personalImageAlt}
+    />
+    <a
+      href="#contact"      
+      rel="noopener"
+      class="flex items-center transition md:justify-center md:hover:scale-105"
+    >
+      <Badge>Disponible para trabajar</Badge>
+    </a>
+  </div>
+  <h1
+    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+  >
+    Hi, I'm Suneidis 🌟
+  </h1>
+  <p
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-pink-200 [&>strong]:text-pink-500 [&>strong]:font-semibold dark:text-gray-300"
+  >
+    <strong
+      >Computer Science Engineer</strong
+    > with +15 years of experience in <strong>
+      Software Testing
+      </strong>. From Cuba, living in Spain. 
+      I'm passionate about <strong>analyze</strong> and identify <strong>quality requirements </strong>from specifications. <strong>Design</strong>, maintain and execute <strong>manual test cases</strong>  and automated. <strong></strong>Report and <strong>verify bugs</strong>.
+  </p>
+  <nav class="flex flex-wrap gap-4 mt-8">
+    <SocialPill href="#contact" target="">
+      <MailIcon class="size-4" />
+      Contáctame
+    </SocialPill>
+    <SocialPill href="https://linkedin.com/in/svinent" target="_blank">
+      <LinkedInIcon class="size-4" />
+      LinkedIn
+    </SocialPill>
+  </nav>
+</div>
