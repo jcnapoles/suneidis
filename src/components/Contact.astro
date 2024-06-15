@@ -1,1 +1,51 @@
-aqui va un formulario de contacto
+---
+
+---
+
+<form id="contact-form" class="bg-white dark:bg-gray-800 shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 md:w-2/3 w-auto">
+  <div class="mb-4">
+    <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="name">
+      Name
+    </label>
+    <input class="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="What's your good name?">
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="email">
+      Email
+    </label>
+    <input class="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 dark:text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="What's your email address?">
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="message">
+      Message
+    </label>
+    <textarea 
+      rows={4}
+      class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 dark:text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline font-medium" 
+      id="message" 
+      placeholder="What you want to say?"></textarea>
+  </div>
+  <div class="flex items-center justify-between">
+    <button class="inline-flex items-center justify-center gap-2 px-3 py-2 space-x-2 text-base text-white transition bg-gray-800 border border-gray-600 focus-visible:ring-pink-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black" type="button">
+      Submit
+    </button>
+  </div>
+</form>
+
+<script type="module">
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      body: formData
+    });
+    if (response.ok) {
+      alert('Message sent!');
+      form.reset();
+    } else {
+      alert('Failed to send message');
+    }
+  });
+</script>

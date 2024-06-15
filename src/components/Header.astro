@@ -3,11 +3,10 @@ import DownloadButton from "./DownloadButton.astro"
 import ThemeToggle from "./ThemeToggle.astro"
 
 const navItems = [
- 
   {
-    title: "Projects",
-    label: "projects",
-    url: "/#projects",
+    title: "Experience",
+    label: "Experience",
+    url: "/#experience",
   },
   {
     title: "Certifications",
@@ -27,20 +26,29 @@ const navItems = [
 ]
 ---
 
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
->
-
-
-  <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
-  >  
+<header class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2 px-4">
+  
+  
   <a
-    class="left-0 p-2 ml-2 transition hover:text-pink dark:hover:text-pink-400 flex items-center"
-    href="" aria-label="Suneidis Vinent"  title="Suneidis Vinent"  >
+    class="lg:hidden p-2 transition hover:text-pink dark:hover:text-pink-400 flex items-center backdrop-blur-xl rounded-full"
+    href="" aria-label="Suneidis Vinent"  title="Suneidis Vinent"
+  >
     <img id="logo" src='/logo.svg' alt="Logo" class="w-15 h-8" />
   </a>
+  <button id="menu-toggle" class="block lg:hidden p-2 focus:outline-none">
+    <svg class="w-6 h-6 text-gray-600 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
   
+
+  <nav class="hidden lg:flex flex-col lg:flex-row lg:items-center px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center lg:space-x-4">
+    <a
+    class="p-2 transition hover:text-pink dark:hover:text-pink-400 flex items-center"
+    href="" aria-label="Suneidis Vinent"  title="Suneidis Vinent"
+  >
+    <img id="logo" src='/logo.svg' alt="Logo" class="w-15 h-8" />
+  </a>
     {
       navItems.map((link) => (
         <a
@@ -51,9 +59,33 @@ const navItems = [
           {link.title}
         </a>
       ))
-    }           
-     <ThemeToggle class="pl-8"/> 
-     <DownloadButton />  
+    }
+    <ThemeToggle class="pl-8"/>
+    <DownloadButton />
+  </nav>
+
+  
+  <nav id="mobile-menu" class="fixed inset-0 bg-white dark:bg-gray-800 flex flex-col items-center justify-center space-y-4 text-center text-gray-600 dark:text-gray-200 transition transform -translate-y-full lg:hidden ">
+    
+    <button id="close-menu" class="absolute top-0 right-0 m-4">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-gray-600 dark:text-gray-200">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    {
+      navItems.map((link) => (
+        <a
+          class="relative block px-4 py-2 transition hover:text-pink-500 dark:hover:text-pink-400"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))
+      
+    }
+    <ThemeToggle/>
+    <DownloadButton />
   </nav>
 </header>
 
@@ -62,17 +94,20 @@ const navItems = [
     const sections = document.querySelectorAll("section")
     const navItems = document.querySelectorAll("header nav a")
 
-    const logo = document.getElementById('logo') as HTMLImageElement;    
+    const logo = document.getElementById('logo') as HTMLImageElement;;
     const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-    if (theme === 'dark') {
-      logo.src = '/logo.svg';
-    } else {
-      logo.src = '/logo.svg';
+    if (logo) {
+      if (theme === 'dark') {
+        logo.src = '/logo.svg';
+      } else {
+        logo.src = '/logo.svg';
+      }
     }
-
-    const callback = (entries: any[]) => {
-      entries.forEach((entry) => {
+   
+    
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
@@ -95,8 +130,8 @@ const navItems = [
       observer.observe(section)
     })
 
-    // Cleanup function
-    document.onvisibilitychange = () => {
+   // Cleanup function
+   document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
         observer.disconnect()
       } else {
@@ -106,6 +141,41 @@ const navItems = [
       }
     }
   })
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+    const closeMenu = document.getElementById('close-menu');
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('-translate-y-full');
+        mobileMenu.classList.toggle('translate-y-0');
+      });
+    }
+    
+
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileMenu) {
+          mobileMenu.classList.add('-translate-y-full');
+          mobileMenu.classList.remove('translate-y-0');
+        }
+      });
+    });
+
+    if (closeMenu) {
+      closeMenu.addEventListener('click', () => {
+      if (mobileMenu) {
+        mobileMenu.classList.add('-translate-y-full');
+        mobileMenu.classList.remove('translate-y-0');
+      }
+    });
+    }
+    
+
+     
 </script>
 
 <style>
@@ -117,7 +187,30 @@ const navItems = [
 
   @keyframes nav-shadown {
     to {
-      @apply shadow-lg ring-1 backdrop-blur dark:bg-gray-800/90 bg-white/50 ring-white/10;
+      @apply shadow-lg ring-1 backdrop-blur-2xl dark:bg-gray-800/90 bg-white/50 ring-white/10;
     }
+  }
+
+  /* Mobile menu transition */
+  #mobile-menu {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Toggle switch */
+  .relative.inline-block.w-12.mr-2.align-middle.select-none.transition.duration-200.ease-in input:checked + label {
+    background-color: #4caf50;
+  }
+
+  .relative.inline-block.w-12.mr-2.align-middle.select-none.transition.duration-200.ease-in input:checked + label .moon {
+    transform: translateX(6px);
+  }
+
+  .relative.inline-block.w-12.mr-2.align-middle.select-none.transition.duration-200.ease-in input:checked + label .sun {
+    transform: translateX(-6px);
+  }
+
+  .moon,
+  .sun {
+    transition: transform 0.2s;
   }
 </style>
