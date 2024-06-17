@@ -2,7 +2,7 @@
 
 <div align="center">
 <a href="https://suneidis.com/">
-<img src="./public/porfolio.webp">
+<img src="./public/suneidis-portfolio.jpg">
 </a>
 <p></p>
 </div>
